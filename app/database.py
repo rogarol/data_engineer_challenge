@@ -10,7 +10,15 @@ engine = create_engine(
 )
 
 #Creation of the session
-Session = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 #Base class to define DB Objects
 Base = declarative_base()
+
+#We define this function to create a DB Connection for each request instead of while the app is running.
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()

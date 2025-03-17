@@ -5,6 +5,7 @@ description = "Globant Data Engineering Coding Challenge"
 readme = "README.md"
 requires-python = ">=3.9"
 dependencies = [
+    "azure-storage-blob>=12.25.0",
     "fastapi[standard]>=0.115.11",
     "pandas>=2.2.3",
     "sqlalchemy>=2.0.39",
