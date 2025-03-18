@@ -19,4 +19,4 @@ def delete_table(tablename:str, db: Session = Depends(get_db)):
 
     results = db.execute(table.delete())
     db.commit()
-    
+    return {"message": "Table deleted successfully."}

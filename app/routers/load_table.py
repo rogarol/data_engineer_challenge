@@ -18,4 +18,4 @@ router = APIRouter(prefix="/load_table", tags=["Load table"])
 @router.post("/{tablename}")
 def load_table(tablename: str,db: Session = Depends(get_db)):
     load_data(tablename,get_data_from_blob(tablename))
-
+    return {"message": "CSV file processed and data loaded into the database."}

@@ -4,24 +4,31 @@ from azure.storage.blob import BlobServiceClient
 from os import getenv
 from fastapi import HTTPException
 
+def evaluate_schema(tablename:str,df:pd.DataFrame)->None:
+    """This function define the schema to rename the headers of the df in order to execute the df.to_sql command"""
+    if tablename == "jobs":
+        df.columns = ['id', 'job']
+    elif tablename == "departments":
+        df.columns = ['id', 'department']
+    elif tablename == "employees":
+        df.columns = ['id', 'name','datetime','department_id','job_id']
+    
 def get_data(filename:str)->pd.DataFrame: 
     """This function is just for local testing"""
     df = pd.read_csv(f'/Users/rodrigogarci/Downloads/data_challenge_files/{filename}.csv',header=None)
+    evaluate_schema(filename,df)
     return df
 
 def load_data(tablename:str,df:pd.DataFrame)->None:
-    """This function is just for local testing"""
-    df.to_sql(tablename, con=engine, if_exists="replace", index=False)
-    return {"message": "CSV file processed and data loaded into SQLite database."}
+    df.to_sql(tablename, con=engine, if_exists="append", index=False)
+    
 
-def get_data_from_blob(blob_name: str) -> pd.DataFrame:
+def get_data_from_blob(filename: str) -> pd.DataFrame:
+    """This function allow to retrieve the information of the CSV files loaded on Azure Blob Storage Service"""
     sas_token = getenv('AZURE_SAS_TOKEN')
     account_url = getenv('AZURE_ACCOUNT_URL')
     container_name = getenv('AZURE_CONTAINER_NAME')
-    blob_name = f'{blob_name}.csv'
-    print(sas_token)
-    print(account_url)
-    print(container_name)
+    blob_name = f'{filename}.csv'
     if not all([sas_token, account_url, container_name]):
         raise HTTPException(status_code=500, detail="Storage configuration is missing.")
     
@@ -37,6 +44,7 @@ def get_data_from_blob(blob_name: str) -> pd.DataFrame:
 
     try:
         df = pd.read_csv(blob_url,header=None)
+        evaluate_schema(filename,df)
         print("OK")
         return df
     except Exception as e:
