@@ -10,8 +10,10 @@ def evaluate_schema(tablename:str,df:pd.DataFrame)->None:
         df.columns = ['id', 'job']
     elif tablename == "departments":
         df.columns = ['id', 'department']
-    elif tablename == "employees":
+    elif tablename == "hired_employees":
         df.columns = ['id', 'name','datetime','department_id','job_id']
+        #Convert the datetime column to a datetime object and then format it to insert in the MySQL table without error
+        df['datetime'] = pd.to_datetime(df['datetime']).dt.strftime('%Y-%m-%d %H:%M:%S')
     
 def get_data(filename:str)->pd.DataFrame: 
     """This function is just for local testing"""

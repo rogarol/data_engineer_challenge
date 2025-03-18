@@ -8,10 +8,10 @@ Base.metadata.create_all(bind=engine)
 #Initialization of the app
 app = FastAPI()
 
-# Include the upload router
+#Include the load table router
 app.include_router(load_table.router)
 
-# Include the upload router
+# Include the read table router
 app.include_router(read_table.router)
 
 # Include the delete router

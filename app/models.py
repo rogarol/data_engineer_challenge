@@ -17,7 +17,7 @@ class Job(Base):
     employees = relationship("Employee", back_populates="job")
 
 class Employee(Base):
-    __tablename__ = "employees"
+    __tablename__ = "hired_employees"
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, index=True)
     department_id = Column(Integer, ForeignKey("departments.id"))

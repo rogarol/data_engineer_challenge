@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
 from os import getenv
-from mysql import connector
+
 
 #For local testing we work with SQLite, then we switch to Azure#
 #SQLALCHEMY_DATABASE_URL = "sqlite:///./test.db"

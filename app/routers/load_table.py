@@ -1,10 +1,7 @@
-import pandas as pd
-from fastapi import APIRouter, UploadFile, File, HTTPException, Depends
+from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
-from typing import List
-from app.database import SessionLocal,get_db
-from app import models
-from app.utils import get_data,load_data,get_data_from_blob
+from app.database import get_db
+from app.utils import load_data,get_data_from_blob
 
 router = APIRouter(prefix="/load_table", tags=["Load table"])
 
