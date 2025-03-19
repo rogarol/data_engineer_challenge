@@ -14,6 +14,6 @@ def delete_table(tablename:str, db: Session = Depends(get_db)):
     except Exception as e:
         raise HTTPException(status_code=404, detail=f"Table '{tablename}' not found.")
 
-    results = db.execute(table.delete())
+    db.execute(table.delete())
     db.commit()
     return {"message": "Table deleted successfully."}

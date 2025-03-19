@@ -51,3 +51,9 @@ def get_data_from_blob(filename: str) -> pd.DataFrame:
         return df
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error reading blob: {e}")
+
+def generate_query(report_number:int)->str:
+    with open(f"..reports/report_{report_number}.sql", "r") as file:
+        sql_script = file.read()
+        return sql_script
+    
