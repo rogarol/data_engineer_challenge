@@ -8,7 +8,7 @@ LOCATION="eastus"
 ACR_NAME="deccontainerregistry"          #must be globally unique and 5-50 lowercase letters and numbers
 IMAGE_NAME="decimage"                 #name for your container image
 CONTAINERAPPS_ENV="deccontainerenv"
-CONTAINER_APP_NAME="deccontainerapp"
+CONTAINER_APP_NAME="deccontainerappv2"
 API_PORT=80                          #the port your Python API listens on
 
 #Path to the .env file in another folder (where the env variables are stored)
@@ -61,3 +61,5 @@ echo "App deployment completed"
 #Output the URL of the deployed container app
 echo "Container App is deployed at:"
 az containerapp show --name $CONTAINER_APP_NAME --resource-group $RESOURCE_GROUP --query properties.configuration.ingress.fqdn -o tsv
+
+#--set properties.template.containers[0].startupProbe.httpGet.path="/health" \

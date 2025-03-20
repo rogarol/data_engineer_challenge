@@ -2,6 +2,10 @@
 
 A REST API built with **FastAPI**, running on **Uvicorn**, containerized via **Docker**, and powered by a **MySQL** database. All running in the **Azure** cloud services.
 
+The API is already available on Azure in the following link:
+
+https://deccontainerappv2.ambitioushill-fad7020d.eastus.azurecontainerapps.io/docs
+
 ## Table of Contents
 
 - [Features](#features)
