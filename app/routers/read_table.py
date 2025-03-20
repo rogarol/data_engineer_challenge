@@ -12,7 +12,8 @@ def read_table(tablename:str, db: Session = Depends(get_db)):
         # Reflect the table based on the table name provided
         table = Table(tablename, metadata, autoload_with=db.bind)
     except Exception as e:
-        raise HTTPException(status_code=404, detail=f"Table '{tablename}' not found.")
+        #raise HTTPException(status_code=404, detail=f"Table '{tablename}' not found.")
+        raise HTTPException(status_code=404, detail=e)
 
     stmt = select(table)
     results = db.execute(stmt).fetchall()

@@ -4,7 +4,7 @@ A REST API built with **FastAPI**, running on **Uvicorn**, containerized via **D
 
 The API is already available on Azure in the following link:
 
-https://deccontainerappv2.ambitioushill-fad7020d.eastus.azurecontainerapps.io/docs
+https://deccontainerappv4.ambitioushill-fad7020d.eastus.azurecontainerapps.io/docs
 
 ## Table of Contents
 

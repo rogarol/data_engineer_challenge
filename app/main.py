@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from app.routers import load_table,read_table,delete_table,reports
-#from app.database import Base,engine
+from app.database import Base,engine
 
 # Create all tables on startup (for local dev)
 #Base.metadata.create_all(bind=engine)
