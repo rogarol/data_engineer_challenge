@@ -39,6 +39,32 @@ https://deccontainerappv4.ambitioushill-fad7020d.eastus.azurecontainerapps.io/do
 - **MySQL Database:** RDBMS open source database.
 - **Azure:** For cloud services.
 
+## Database DDL
+
+    ```sql
+    USE db_dec;
+
+    CREATE TABLE departments (
+        id INT PRIMARY KEY,
+        department VARCHAR(100) NOT NULL UNIQUE
+    );
+
+    CREATE TABLE jobs (
+        id INT PRIMARY KEY,
+        job VARCHAR(100) NOT NULL UNIQUE
+    );
+
+    CREATE TABLE hired_employees (
+        id INT PRIMARY KEY,
+        name VARCHAR(100) NULL,
+        datetime datetime NULL,
+        department_id INT NULL,
+        job_id INT NULL,
+        CONSTRAINT fk_department FOREIGN KEY (department_id) REFERENCES departments(id),
+        CONSTRAINT fk_job FOREIGN KEY (job_id) REFERENCES jobs(id)
+    );
+    ```
+
 ## API Guide
 
 ![Endpoints Guide](/diagrams/DEC_EndpointsGuide.png)
@@ -76,3 +102,4 @@ For deployment in Azure execute the scripts in the deploy folder, the scripts sh
     sh deploy.sh
 
 After the first deployment, if you make changes on the app, just run the deploy script since all the Azure resources are already created.
+
