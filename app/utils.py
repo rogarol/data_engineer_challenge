@@ -3,6 +3,7 @@ from app.database import engine
 from azure.storage.blob import BlobServiceClient
 from os import getenv
 from fastapi import HTTPException
+import os
 
 def evaluate_schema(tablename:str,df:pd.DataFrame)->None:
     """This function define the schema to rename the headers of the df in order to execute the df.to_sql command"""
@@ -53,7 +54,8 @@ def get_data_from_blob(filename: str) -> pd.DataFrame:
         raise HTTPException(status_code=500, detail=f"Error reading blob: {e}")
 
 def generate_query(report_number:int)->str:
-    with open(f"..reports/report_{report_number}.sql", "r") as file:
+    with open(f"app/reports/report_{report_number}.sql", "r") as file:
         sql_script = file.read()
         return sql_script
+    
     
