@@ -15,7 +15,7 @@ username = getenv("AZURE_MYSQL_USERNAME")
 password = getenv("AZURE_MYSQL_PASSWORD")
 host = getenv("AZURE_MYSQL_HOST")
 database = getenv("AZURE_MYSQL_DATABASE")
-ssl_ca_path = getenv("AZURE_MYSQL_CA_CERF_PATH")
+ssl_ca_path = "app/certificates/DigiCertGlobalRootCA.crt.pem"
 
 #Construct the connection URL for SQLAlchemy with MySQL Connector/Python driver
 connection_url = f"mysql+mysqlconnector://{username}:{password}@{host}/{database}"
